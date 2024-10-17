@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class LigaBD {
     public static Connection liga() throws SQLException{
-        String url = "jdbc:mysql://localhost:3306/rh?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:192.168.12.150/multibanco?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String user = "root";
         String pass = "";
         
@@ -23,8 +23,8 @@ public class LigaBD {
         con = DriverManager.getConnection(url,user,pass);
         return con;
     }
-    public void inserDadosUser(int conta,String nome,String senha,float saldo ) throws SQLException{
-        String query = "INSERT INTO registro(conta,nome,login,senha) VALUES ('"+conta+"','"+nome+"','"+senha+"',"+saldo+")";
+    public void inserDadosUser(String nome,float saldo,int conta,int senha ) throws SQLException{
+        String query = "INSERT INTO registro(nome,saldo,conta,senha) VALUES ('"+nome+"',"+saldo+","+conta+","+senha+")";
         Connection con = liga();
         PreparedStatement ps = con.prepareStatement(query);
         ps.execute();
