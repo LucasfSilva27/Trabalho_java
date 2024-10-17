@@ -151,6 +151,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="ctxnome">
+<<<<<<< HEAD
+=======
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ctxnomeActionPerformed"/>
+      </Events>
+>>>>>>> 6ae152d55576c4d6761befc63524eb3baa665c35
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -198,6 +204,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Registo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -1,3 +1,10 @@
+
+import static java.lang.Character.isLetter;
+import java.text.Normalizer.Form;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -63,6 +70,15 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setText("Nome do Cliente:");
 
+<<<<<<< HEAD
+=======
+        ctxnome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxnomeActionPerformed(evt);
+            }
+        });
+
+>>>>>>> 6ae152d55576c4d6761befc63524eb3baa665c35
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setText("Saldo:");
 
@@ -86,6 +102,11 @@ public class Login extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Registo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,6 +188,53 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+LigaBD liga = new LigaBD();
+if (verificaNome()) {
+    if(verificaSaldo()){
+        if(verificaconta()){
+            if(verificapasword()){
+                JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!!",
+                "Sucesso!!",JOptionPane.INFORMATION_MESSAGE);
+                //Sou lucas costa e gosto de aplicar venenos no bumbum
+                int conta = Integer.parseInt(ctxconta.getText());
+                int senha = Integer.parseInt(ctxpassword.getText());
+                float saldo = Float.parseFloat(ctxsaldo.getText());
+                
+                  try {
+                      
+                                   liga.inserDadosUser(ctxnome.getText(),saldo,conta,senha);
+                               } catch (java.sql.SQLException ex) {
+                                   Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
+                               }
+                               
+           
+            }else{
+                JOptionPane.showMessageDialog(this, "A senha tem que ser númerica e ter 4 digitos",
+                "Erro na Senha", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "A conta tem que ser númerica e ter 8 digitos",
+            "Erro no login", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }else{
+        JOptionPane.showMessageDialog(this, "O Saldo tem que ser númerico, possitivo ou nulo",
+            "Erro no Saldo", JOptionPane.ERROR_MESSAGE);
+    }
+    
+}else{
+    JOptionPane.showMessageDialog(this, "O Nome tem de ter mais do que 2 letras",
+            "Erro no Nome", JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ctxnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxnomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxnomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -217,4 +285,75 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    private boolean verificaNome() {
+        String nome = ctxnome.getText();
+        int espacos=0, letras=0;
+        char c;
+        if(nome.length()<=2)
+            return false;
+        else{
+            for(int x=0;x<nome.length();x++){
+                c=nome.charAt(x);
+                if(isLetter(c))
+                    letras++;
+                else if(c==' ')
+                    espacos++;
+                else
+                    return false;
+            }
+            if((letras+espacos)==nome.length())
+                return true;
+        }
+       return false;
+     }
+
+    private boolean verificaSaldo() {
+        String saldo = ctxsaldo.getText();
+        int tamanho = saldo.length();
+        boolean achouNumero = false;
+        if (tamanho <1){
+            return false;
+        }
+        for(char c : saldo.toCharArray()){
+            if(Character.isDigit(c)) {
+                achouNumero = true;
+            }
+           
+        }   
+        return achouNumero;
+      }
+
+    private boolean verificaconta() {
+        String conta = ctxconta.getText();
+        int tamanho = conta.length();
+        boolean achouNumero = false;
+        if (tamanho <8){
+            return false;
+        }
+        for(char c : conta.toCharArray()){
+            if(Character.isDigit(c)) {
+                achouNumero = true;
+            }
+           
+        }   
+        return achouNumero;
+      }
+
+    private boolean verificapasword() {
+        
+        String password = ctxpassword.getText();
+        int tamanho = password.length();
+        boolean achouNumero = false;
+        if (tamanho <4){
+            return false;
+        }
+        for(char c : password.toCharArray()){
+            if(Character.isDigit(c)) {
+                achouNumero = true;
+            }
+           
+        }   
+        return achouNumero;
+      }
 }
