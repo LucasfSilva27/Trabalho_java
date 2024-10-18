@@ -56,6 +56,11 @@ public class Extrato extends javax.swing.JFrame {
         jScrollPane1.setViewportView(ctxmostra);
 
         ctxvoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-90-removebg-preview_1.png"))); // NOI18N
+        ctxvoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxvoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +96,12 @@ public class Extrato extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ctxvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxvoltarActionPerformed
+         MenuAposLogin md = new MenuAposLogin();
+       this.dispose();
+       md.setVisible(true);
+    }//GEN-LAST:event_ctxvoltarActionPerformed
 
     /**
      * @param args the command line arguments

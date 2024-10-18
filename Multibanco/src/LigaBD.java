@@ -18,7 +18,11 @@ public class LigaBD {
         String url = "jdbc:mysql://192.168.12.49:3306/multibanco?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String user = "admin";
         String pass = "admin";
+<<<<<<< HEAD
        
+=======
+        
+>>>>>>> e075b0ff238934691ff30abd11f1cf518f81360f
         Connection con = null;
         con = DriverManager.getConnection(url,user,pass);
         return con;

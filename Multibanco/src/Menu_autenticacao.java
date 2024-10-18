@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 public class Menu_autenticacao extends javax.swing.JFrame {
 
-     // HashMap para simular banco de dados de contas
-    private HashMap<String, String> contas = new HashMap<>();
+    
+   
 
     public Menu_autenticacao() {
         initComponents();
@@ -217,11 +217,28 @@ public class Menu_autenticacao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void ctxentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxentrarActionPerformed
-        if (verificaLogin()){
-        }else {
+               
+           int numero = Integer.parseInt(ctxnumeroconta.getText());
+           int password = Integer.parseInt(ctxpass.getText());
+
+
+
+                // Verificar o login
+                LoginVerificador verificador = new LoginVerificador();
+                boolean loginValido = verificador.verificarLogin(numero, password);
+
+                if (loginValido) {
+                    
+                    MenuAposLogin md = new MenuAposLogin();
+                    this.dispose();
+                    md.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Número da conta ou senha incorretos!");
+                }
+       
             
             
-        }
+        
     }//GEN-LAST:event_ctxentrarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -288,17 +305,10 @@ public class Menu_autenticacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
-    private boolean verificaLogin() {
-     String numeroConta = ctxnumeroconta.getText();
-        String senha = new String(ctxpass.getPassword());
+   
+    
+     
+    
 
-        // Verifica se os dados inseridos estão no banco (HashMap)
-        if (contas.containsKey(numeroConta) && contas.get(numeroConta).equals(senha)) {
-            JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
-            // Abrir a próxima janela ou funcionalidade do sistema após o login
-        } else {
-            JOptionPane.showMessageDialog(this, "Número da conta ou senha incorretos.");
-        }
-        return false;
-    }    
+   
 }

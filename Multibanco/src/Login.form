@@ -154,7 +154,10 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ctxnomeActionPerformed"/>
       </Events>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e075b0ff238934691ff30abd11f1cf518f81360f
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
