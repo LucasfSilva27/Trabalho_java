@@ -69,12 +69,22 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setText("Nome do Cliente:");
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> 64c2f6a3e8a09ead81765f242fbfe262ead91928
         ctxnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ctxnomeActionPerformed(evt);
             }
         });
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 64c2f6a3e8a09ead81765f242fbfe262ead91928
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setText("Saldo:");
 
@@ -181,7 +191,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_ctxsaldoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       Menu_autenticacao md = new Menu_autenticacao();
+       this.dispose();
+       md.setVisible(true); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
