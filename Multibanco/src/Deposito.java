@@ -45,6 +45,11 @@ public class Deposito extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/depo_1.png"))); // NOI18N
 
         ctxvoltar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-90-removebg-preview_1.png"))); // NOI18N
+        ctxvoltar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxvoltar2ActionPerformed(evt);
+            }
+        });
 
         depositar.setBackground(new java.awt.Color(0, 102, 255));
         depositar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -118,6 +123,12 @@ public class Deposito extends javax.swing.JFrame {
     private void depositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_depositarActionPerformed
+
+    private void ctxvoltar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxvoltar2ActionPerformed
+         MenuAposLogin md = new MenuAposLogin();
+       this.dispose();
+       md.setVisible(true);
+    }//GEN-LAST:event_ctxvoltar2ActionPerformed
 
     /**
      * @param args the command line arguments

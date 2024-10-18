@@ -107,6 +107,11 @@ public class MenuAposLogin extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(0, 204, 204));
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton11.setText("Saque");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Cliente:");
@@ -202,23 +207,31 @@ public class MenuAposLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+         Tranferencia_Menu md = new Tranferencia_Menu();
+       this.dispose();
+       md.setVisible(true); 
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        Deposito md = new Deposito();
+       this.dispose();
+       md.setVisible(true); 
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        Extrato md = new Extrato();
+       this.dispose();
+       md.setVisible(true); 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+      Saldo md = new Saldo();
+       this.dispose();
+       md.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ctxconta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxconta1ActionPerformed
@@ -228,6 +241,12 @@ public class MenuAposLogin extends javax.swing.JFrame {
     private void cxtcliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cxtcliente1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cxtcliente1ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+         Saque md = new Saque();
+       this.dispose();
+       md.setVisible(true); 
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments

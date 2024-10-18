@@ -15,9 +15,9 @@ import java.sql.SQLException;
  */
 public class LigaBD {
     public static Connection liga() throws SQLException{
-        String url = "jdbc:mysql://localhost:3306/multibanco?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String user = "root";
-        String pass = "";
+        String url = "jdbc:mysql://192.168.12.49:3306/multibanco?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        String user = "admin";
+        String pass = "admin";
         
         Connection con = null;
         con = DriverManager.getConnection(url,user,pass);
