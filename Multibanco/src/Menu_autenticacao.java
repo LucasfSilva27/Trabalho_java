@@ -54,17 +54,15 @@ public class Menu_autenticacao extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Senha");
 
-<<<<<<< HEAD
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setLabel("12345");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+
+        ctxnumeroconta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+     
+        ctxnumeroconta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-=======
->>>>>>> 95ac94601d35f1385bf55b99c20f9e2892e49415
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Número da Conta");
 

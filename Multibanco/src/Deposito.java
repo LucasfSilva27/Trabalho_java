@@ -1,3 +1,9 @@
+
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -120,9 +126,13 @@ public class Deposito extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    ArrayList<Utilizador> tabUsers = new ArrayList ();
     private void depositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarActionPerformed
-        // TODO add your handling code here:
+   
+    
+           
+             
+       
     }//GEN-LAST:event_depositarActionPerformed
 
     private void ctxdepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxdepositoActionPerformed
@@ -174,4 +184,23 @@ public class Deposito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
+
+    private boolean verificaDeposito() {
+         String deposito_Str = ctxdeposito.getText(); 
+    try {
+        double deposito = Double.parseDouble(deposito_Str);      //converte string em ponto flutuante Double
+        return deposito >= 1 && deposito <= 1000;
+    } catch (NumberFormatException e) {
+        return false; 
+    }
+    }
 }
+
+
+
+// NumberFormatException string não é um formato válido
+// catch usado para tratar exceções
+// O campo depósito deve ser no valor entre 1 euro e  1.000 euros
+
+
+
