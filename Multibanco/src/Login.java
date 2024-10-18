@@ -69,16 +69,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setText("Nome do Cliente:");
-
-<<<<<<< HEAD
-=======
         ctxnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ctxnomeActionPerformed(evt);
             }
         });
 
->>>>>>> 6ae152d55576c4d6761befc63524eb3baa665c35
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setText("Saldo:");
 
