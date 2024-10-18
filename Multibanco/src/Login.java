@@ -69,7 +69,6 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setText("Nome do Cliente:");
-
         ctxnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ctxnomeActionPerformed(evt);
@@ -97,6 +96,7 @@ public class Login extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(0, 102, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Registo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +204,7 @@ if (verificaNome()) {
                                    Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
                                }
                                
-                
+           
             }else{
                 JOptionPane.showMessageDialog(this, "A senha tem que ser númerica e ter 4 digitos",
                 "Erro na Senha", JOptionPane.ERROR_MESSAGE);
