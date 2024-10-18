@@ -59,6 +59,12 @@ public class Deposito extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Deposito:");
 
+        ctxdeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxdepositoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,6 +124,10 @@ public class Deposito extends javax.swing.JFrame {
     private void depositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_depositarActionPerformed
+
+    private void ctxdepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxdepositoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxdepositoActionPerformed
 
     /**
      * @param args the command line arguments
