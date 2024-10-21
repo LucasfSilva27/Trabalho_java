@@ -9,9 +9,13 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 public class Menu_autenticacao extends javax.swing.JFrame {
 
+<<<<<<< HEAD
     String conta;
 
     
+=======
+     public static int cont ,sen;
+>>>>>>> 3542e1571628d3badaa6d3b45328f0360f7cc257
    
 
     public Menu_autenticacao() {
@@ -55,6 +59,15 @@ public class Menu_autenticacao extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Senha");
+
+
+        ctxnumeroconta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+     
+        ctxnumeroconta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Número da Conta");
@@ -211,14 +224,11 @@ public class Menu_autenticacao extends javax.swing.JFrame {
 
     private void ctxentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxentrarActionPerformed
                
-           int numero = Integer.parseInt(ctxnumeroconta.getText());
-           int password = Integer.parseInt(ctxpass.getText());
+           cont = Integer.parseInt(ctxnumeroconta.getText());
+           sen = Integer.parseInt(ctxpass.getText());
+        // Verificar o login
 
-
-
-                // Verificar o login
-                LoginVerificador verificador = new LoginVerificador();
-                boolean loginValido = verificador.verificarLogin(numero, password);
+                boolean loginValido = LoginVerificador.verificarLogin(cont, sen);
 
                 if (loginValido) {
                     
@@ -229,13 +239,13 @@ public class Menu_autenticacao extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Número da conta ou senha incorretos!");
                 }
        
-            
+           System.out.println("Conta: "+cont); 
             
         
     }//GEN-LAST:event_ctxentrarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ContaNova md = new ContaNova();
+       ContaNova md = new ContaNova();
        this.dispose();
        md.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -243,6 +253,10 @@ public class Menu_autenticacao extends javax.swing.JFrame {
     private void ctxnumerocontaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxnumerocontaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ctxnumerocontaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

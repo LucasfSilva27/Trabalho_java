@@ -19,7 +19,6 @@ public class LigaBD {
         String url = "jdbc:mysql://192.168.12.49:3306/multibanco?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String user = "admin";
         String pass = "admin";
-        
         Connection con = null;
         con = DriverManager.getConnection(url,user,pass);
         return con;
@@ -36,6 +35,10 @@ public class LigaBD {
     PreparedStatement ps = con.prepareStatement(query);
     ps.execute();
   //  }
+
+    void inserDadosUser(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 
     ResultSet executa(String query) {

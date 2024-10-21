@@ -1,4 +1,5 @@
 
+
 import static java.lang.Character.isLetter;
 import java.text.Normalizer.Form;
 import java.util.logging.Level;
@@ -15,15 +16,9 @@ import javax.swing.JOptionPane;
  * @author lsilva
  */
 public class Login extends javax.swing.JFrame {
+   public static int conta ,senha;
 
-    /**
-     * Creates new form Login
-     */
-    public Login() {
-        initComponents();
-        getContentPane().setBackground(java.awt.Color.cyan);
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -195,11 +190,18 @@ if (verificaNome()) {
             if(verificapasword()){
                 JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!!",
                 "Sucesso!!",JOptionPane.INFORMATION_MESSAGE);
+<<<<<<< HEAD
                 //Sou lucas costa e gosto de aplicar venenos no bumbum
                 int conta = Integer.parseInt(ctxconta.getText());
                 int senha = Integer.parseInt(ctxpassword.getText());
                 int nif = Integer.parseInt(ctxnif.getText());
+=======
+             
+>>>>>>> 3542e1571628d3badaa6d3b45328f0360f7cc257
                 
+                 conta = Integer.parseInt(ctxconta.getText());
+                 senha = Integer.parseInt(ctxpassword.getText());
+                 float saldo = Float.parseFloat(ctxsaldo.getText());
                   try {
                       
                                    liga.inserDadosUser(ctxnome.getText(),nif,conta,senha);
