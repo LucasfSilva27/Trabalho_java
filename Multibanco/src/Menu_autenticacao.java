@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 public class Menu_autenticacao extends javax.swing.JFrame {
 
-    
+     public static int cont ,sen;
    
 
     public Menu_autenticacao() {
@@ -218,14 +218,11 @@ public class Menu_autenticacao extends javax.swing.JFrame {
 
     private void ctxentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxentrarActionPerformed
                
-           int numero = Integer.parseInt(ctxnumeroconta.getText());
-           int password = Integer.parseInt(ctxpass.getText());
+           cont = Integer.parseInt(ctxnumeroconta.getText());
+           sen = Integer.parseInt(ctxpass.getText());
+        // Verificar o login
 
-
-
-                // Verificar o login
-                LoginVerificador verificador = new LoginVerificador();
-                boolean loginValido = verificador.verificarLogin(numero, password);
+                boolean loginValido = LoginVerificador.verificarLogin(cont, sen);
 
                 if (loginValido) {
                     
@@ -236,13 +233,13 @@ public class Menu_autenticacao extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Número da conta ou senha incorretos!");
                 }
        
-            
+           System.out.println("Conta: "+cont); 
             
         
     }//GEN-LAST:event_ctxentrarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        ContaNova md = new ContaNova();
+       ContaNova md = new ContaNova();
        this.dispose();
        md.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
