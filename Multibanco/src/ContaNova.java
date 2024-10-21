@@ -1,3 +1,9 @@
+
+
+import javax.swing.*;
+import java.awt.event.*;
+import java.sql.SQLException;
+import java.util.logging.*;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -32,17 +38,15 @@ public class ContaNova extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        ctxnomecliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        tipocontas = new javax.swing.JComboBox<>();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        ctxtipoconta = new javax.swing.JComboBox<>();
+        ctxnumeroconta = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        ctxsaldo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
 
         jLabel6.setText("jLabel6");
 
@@ -55,11 +59,11 @@ public class ContaNova extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngwing.com.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel3.setText("Nome :");
+        jLabel3.setText("Nome Cliente:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        ctxnomecliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                ctxnomeclienteActionPerformed(evt);
             }
         });
 
@@ -77,24 +81,36 @@ public class ContaNova extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Criar Nova Conta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        tipocontas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Conta Poupança", "Conta Corrente", "Conta Conjunta" }));
+        ctxtipoconta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Conta corrente", "Conta poupança" }));
+        ctxtipoconta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxtipocontaActionPerformed(evt);
+            }
+        });
 
-        jRadioButton1.setText("Sim");
+        ctxnumeroconta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxnumerocontaActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Não");
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel5.setText("    Nº Conta:");
+
+        ctxsaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxsaldoActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel7.setText("Débito:");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel8.setText("Crédito:");
-
-        jRadioButton3.setText("Sim");
-
-        jRadioButton4.setSelected(true);
-        jRadioButton4.setText("Não");
+        jLabel7.setText("      Saldo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,23 +125,20 @@ public class ContaNova extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(182, 182, 182))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tipocontas, 0, 223, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
+                            .addComponent(ctxtipoconta, 0, 223, Short.MAX_VALUE)
+                            .addComponent(ctxnomecliente)
+                            .addComponent(ctxnumeroconta)
+                            .addComponent(ctxsaldo))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,27 +159,20 @@ public class ContaNova extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipocontas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
+                    .addComponent(ctxtipoconta, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctxnomecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctxnumeroconta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ctxsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -177,15 +183,114 @@ public class ContaNova extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        Menu_autenticacao md = new Menu_autenticacao();
        this.dispose();
        md.setVisible(true); 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ctxnumerocontaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxnumerocontaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxnumerocontaActionPerformed
+
+    private void ctxsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxsaldoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxsaldoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        LigaBD liga = new LigaBD();
+   
+     
+    
+        
+        if (!verificaTipoConta()) {
+            JOptionPane.showMessageDialog(this, "Selecione um tipo de conta válido.", "Erro no Tipo de Conta", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!verificaNome()) {
+            JOptionPane.showMessageDialog(this, "O Nome deve ter mais do que 2 letras.", "Erro no Nome", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!verificaConta()) {
+            JOptionPane.showMessageDialog(this, "A conta deve ser numérica e ter 8 dígitos.", "Erro na Conta", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!verificaSaldo()) {
+            JOptionPane.showMessageDialog(this, "O saldo deve ser numérico e positivo.", "Erro no Saldo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
+        JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+        
+        try {
+            Object selectedItem = ctxtipoconta.getSelectedItem();
+            if (selectedItem == null) {
+                throw new IllegalArgumentException("Nenhum tipo de conta selecionado.");
+            }
+
+            String selectedValue = selectedItem.toString();
+            String nome = ctxnomecliente.getText().trim();  
+            int conta = Integer.parseInt(ctxnumeroconta.getText().trim());  
+            float saldo = Float.parseFloat(ctxsaldo.getText().trim());      
+
+          String valor = ctxtipoconta.getSelectedItem().toString();
+            liga.criarConta(valor, ctxnumeroconta.getText(), conta,saldo);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Valores numéricos inválidos. Verifique o NIF, número da conta e saldo.", "Erro de Entrada", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erro de Seleção", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro inesperado: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    
+    private boolean verificaTipoConta() {
+        Object selectedItem = ctxtipoconta.getSelectedItem();
+        return selectedItem != null && !selectedItem.toString().isEmpty();
+    }
+
+    private boolean verificaNome() {
+        String nome = ctxnomecliente.getText().trim();
+        return nome.length() > 2; // Nome precisa ter mais de 2 letras
+    }
+
+    private boolean verificaConta() {
+        String conta = ctxnumeroconta.getText().trim();
+        return conta.matches("\\d{8}"); // Verifica se tem 8 dígitos numéricos
+    }
+
+    private boolean verificaSaldo() {
+        try {
+            float saldo = Float.parseFloat(ctxsaldo.getText().trim());
+            return saldo >= 0; // Verifica se é positivo
+        } catch (NumberFormatException e) {
+            return false; // Retorna falso se não for um número válido
+        }
+    
+       
+ 
+        
+        
+        
+        
+  
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ctxtipocontaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxtipocontaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxtipocontaActionPerformed
+
+    private void ctxnomeclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxnomeclienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxnomeclienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,20 +331,18 @@ public class ContaNova extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JTextField ctxnomecliente;
+    private javax.swing.JTextField ctxnumeroconta;
+    private javax.swing.JTextField ctxsaldo;
+    private javax.swing.JComboBox<String> ctxtipoconta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JComboBox<String> tipocontas;
     // End of variables declaration//GEN-END:variables
 }

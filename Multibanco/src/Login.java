@@ -41,7 +41,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ctxnome = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        ctxsaldo = new javax.swing.JTextField();
+        ctxnif = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         ctxpassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
@@ -59,7 +59,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/homem-de-negocios_resized.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel3.setText("Número:");
+        jLabel3.setText("       Número:");
 
         ctxconta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,16 +77,16 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel5.setText("Saldo:");
+        jLabel5.setText("           NIF:");
 
-        ctxsaldo.addActionListener(new java.awt.event.ActionListener() {
+        ctxnif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ctxsaldoActionPerformed(evt);
+                ctxnifActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel6.setText("Password:");
+        jLabel6.setText("      Password:");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons8-back-90-removebg-preview_1.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +125,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ctxnome, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ctxsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctxnif, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctxconta, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ctxpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -152,7 +152,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ctxsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ctxnif, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,9 +177,9 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ctxcontaActionPerformed
 
-    private void ctxsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxsaldoActionPerformed
+    private void ctxnifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxnifActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ctxsaldoActionPerformed
+    }//GEN-LAST:event_ctxnifActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        Menu_autenticacao md = new Menu_autenticacao();
@@ -190,7 +190,7 @@ public class Login extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 LigaBD liga = new LigaBD();
 if (verificaNome()) {
-    if(verificaSaldo()){
+    if(verificaNif()){
         if(verificaconta()){
             if(verificapasword()){
                 JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!!",
@@ -198,11 +198,11 @@ if (verificaNome()) {
                 //Sou lucas costa e gosto de aplicar venenos no bumbum
                 int conta = Integer.parseInt(ctxconta.getText());
                 int senha = Integer.parseInt(ctxpassword.getText());
-                float saldo = Float.parseFloat(ctxsaldo.getText());
+                int nif = Integer.parseInt(ctxnif.getText());
                 
                   try {
                       
-                                   liga.inserDadosUser(ctxnome.getText(),saldo,conta,senha);
+                                   liga.inserDadosUser(ctxnome.getText(),nif,conta,senha);
                                } catch (java.sql.SQLException ex) {
                                    Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
                                }
@@ -219,8 +219,8 @@ if (verificaNome()) {
         }
         
     }else{
-        JOptionPane.showMessageDialog(this, "O Saldo tem que ser númerico, possitivo ou nulo",
-            "Erro no Saldo", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "O NIF tem que ter 9 digitos",
+            "Erro no NIF", JOptionPane.ERROR_MESSAGE);
     }
     
 }else{
@@ -271,9 +271,9 @@ if (verificaNome()) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ctxconta;
+    private javax.swing.JTextField ctxnif;
     private javax.swing.JTextField ctxnome;
     private javax.swing.JPasswordField ctxpassword;
-    private javax.swing.JTextField ctxsaldo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -307,20 +307,18 @@ if (verificaNome()) {
        return false;
      }
 
-    private boolean verificaSaldo() {
-        String saldo = ctxsaldo.getText();
-        int tamanho = saldo.length();
-        boolean achouNumero = false;
-        if (tamanho <1){
+    private boolean verificaNif() {
+         String nif= ctxnif.getText();
+         if (nif == null ||nif.length() != 9) {
             return false;
         }
-        for(char c : saldo.toCharArray()){
-            if(Character.isDigit(c)) {
-                achouNumero = true;
+             for (int i = 0; i < nif.length(); i++) {
+            if (!Character.isDigit(nif.charAt(i))) {
+                return false;
             }
-           
-        }   
-        return achouNumero;
+        }
+
+        return true; 
       }
 
     private boolean verificaconta() {

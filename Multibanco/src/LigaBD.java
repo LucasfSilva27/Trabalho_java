@@ -2,6 +2,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /*
@@ -23,17 +24,23 @@ public class LigaBD {
         con = DriverManager.getConnection(url,user,pass);
         return con;
     }
-    public void inserDadosUser(String nome,float saldo,int conta,int senha ) throws SQLException{
-        String query = "INSERT INTO registro(nome,saldo,conta,senha) VALUES ('"+nome+"',"+saldo+","+conta+","+senha+")";
+    public void inserDadosUser(String nome,int nif,int conta,int senha ) throws SQLException{
+        String query = "INSERT INTO user(nome,nif,conta,senha) VALUES ('"+nome+"',"+nif+","+conta+","+senha+")";
         Connection con = liga();
         PreparedStatement ps = con.prepareStatement(query);
         ps.execute();
     }
-  //  public static Resultset pesquisaDados() throws SQLException {
-  //  String query = "SELECT * FROM user";
-  // Connection con = liga();
-  //  PreparedStatement ps = con.prepareStatement(query);
-  //  ResultSet rs = ps.executeQuery();
-  //  return (Resultset) rs;
+    public void criarConta(String t_conta,String nome, int conta,float saldo ) throws SQLException {
+    String query = "INSERT INTO nova_conta(tipo_conta,nome,conta,saldo) VALUES ('"+t_conta+"',"+nome+","+conta+","+saldo+")";
+    Connection con = liga();
+    PreparedStatement ps = con.prepareStatement(query);
+    ps.execute();
   //  }
+}
+
+    ResultSet executa(String query) {
+        
+        return null;
+        
+    }
 }
