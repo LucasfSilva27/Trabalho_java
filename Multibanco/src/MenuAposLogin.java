@@ -1,3 +1,8 @@
+
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -229,9 +234,13 @@ public class MenuAposLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      Saldo md = new Saldo();
-       this.dispose();
-       md.setVisible(true);   // TODO add your handling code here:
+        try {
+            Saldo md = new Saldo();
+            this.dispose();
+            md.setVisible(true);   // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAposLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ctxconta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxconta1ActionPerformed

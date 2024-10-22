@@ -2,17 +2,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.Connection;
 public class Saldo extends javax.swing.JFrame {
 
    Menu_autenticacao ma = new Menu_autenticacao();
     public Saldo() throws SQLException {
         
         initComponents();
-        LigaBD liga = new LigaBD();
-        String query = "SELECT saldo FROM clientes WHERE id = "+ma.conta;
-        ResultSet rs = liga.executa(query);
-        rs.first();
-        ctxsaldo.setText(rs.getFloat(1));
+        //LigaBD liga = new LigaBD();
+        Connection con = LigaBD.liga();
+        String query = "SELECT saldo FROM registro WHERE conta="+ma.cont;
+        //ResultSet rs = liga.executa(query);
+         try (PreparedStatement stmtSelect = con.prepareStatement(query)) {
+            ResultSet rs = stmtSelect.executeQuery();
+        
+            rs.first();
+            ctxsaldo.setText(String.valueOf(rs.getFloat(1)));
+        
+         }
+        
+        
+         //LoginVerificador login = new LoginVerificador();
+         // Menu_autenticacao ma = new Menu_autenticacao();
+    
+        //double saldoAtual = login.mostralsaldo(ma.cont);
+  
     }
 
     /**
@@ -37,6 +53,11 @@ public class Saldo extends javax.swing.JFrame {
         jLabel1.setText("Saldo do Cliente");
 
         ctxsaldo.setEditable(false);
+        ctxsaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxsaldoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Saldo Disponivel:");
@@ -98,6 +119,11 @@ public class Saldo extends javax.swing.JFrame {
        this.dispose();
        md.setVisible(true); 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ctxsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxsaldoActionPerformed
+  
+
+    }//GEN-LAST:event_ctxsaldoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -199,7 +199,7 @@ if (verificaNome()) {
                 
                  conta = Integer.parseInt(ctxconta.getText());
                  senha = Integer.parseInt(ctxpassword.getText());
-                 float saldo = Float.parseFloat(ctxsaldo.getText());
+                // float saldo = Float.parseFloat(ctxsaldo.getText());
                   try {
                       
                                    liga.inserDadosUser(ctxnome.getText(),nif,conta,senha);

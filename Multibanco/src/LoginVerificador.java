@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /*
@@ -45,6 +47,37 @@ public class LoginVerificador {
 
         return loginValido;
     }
+    
+public static double mostrarsaldo(int numeroConta) {
+    String sqlSelect = "SELECT saldo FROM registro WHERE conta = ?";
+    double saldoAtual = 0;
+    
+    try (Connection liga = LigaBD.liga()) {
+        if (liga == null) {
+            System.out.println("Erro: Conexão com o banco de dados falhou.");
+            return saldoAtual; // Retorna 0 se a conexão falhar
+        }
+        // Primeiro, buscar o saldo atual da conta
+        
+        try (PreparedStatement stmtSelect = liga.prepareStatement(sqlSelect)) {
+            stmtSelect.setInt(1, numeroConta);
+            ResultSet rs = stmtSelect.executeQuery();
+
+            if (rs.next()) {
+                saldoAtual = rs.getDouble("saldo");
+                System.out.println("Saldo atual: " + saldoAtual);
+                return saldoAtual;
+            } else {
+                System.out.println("Conta não encontrada.");
+                return saldoAtual; // Retorna 0 se a conta não for encontrada
+            }
+        }
+    }   catch (SQLException ex) {
+            Logger.getLogger(LoginVerificador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+       
+}
 public static double alterarSaldo(int numeroConta, double deposito) {
     String sqlSelect = "SELECT saldo FROM registro WHERE conta = ?";
     String sqlUpdate = "UPDATE registro SET saldo = ? WHERE conta = ?";
@@ -147,7 +180,7 @@ public static double sacarSaldo(int numeroConta, double valorSaque) {
             int rowsAffected = stmtUpdate.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("Saque realizado com sucesso!");
+                System.o-ut.println("Saque realizado com sucesso!");
             } else {
                 System.out.println("Falha ao atualizar o saldo.");
             }
