@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/lcosta/Desktop/Trabalho%20Java/Multibanco/src/ContaNova.java</file>
             <file>file:/C:/Users/lcosta/Desktop/Trabalho%20Java/Multibanco/src/Login.java</file>
             <file>file:/C:/Users/lcosta/Desktop/Trabalho%20Java/Multibanco/src/Saldo.java</file>
@@ -12,6 +13,12 @@
 =======
             <file>file:/C:/Users/vpereira/Desktop/Trabalho%20ATM/Trabalho_java/Multibanco/src/Deposito.java</file>
 >>>>>>> 3542e1571628d3badaa6d3b45328f0360f7cc257
+=======
+            <file>file:/C:/Users/lsilva/Desktop/Trabalho%20Java/Trabalho_java/Multibanco/src/LoginVerificador.java</file>
+            <file>file:/C:/Users/lsilva/Desktop/Trabalho%20Java/Trabalho_java/Multibanco/src/Saque.java</file>
+            <file>file:/C:/Users/lsilva/Desktop/Trabalho%20Java/Trabalho_java/Multibanco/src/Saldo.java</file>
+            <file>file:/C:/Users/lsilva/Desktop/Trabalho%20Java/Trabalho_java/Multibanco/src/Deposito.java</file>
+>>>>>>> a2e49ed4e4c2df67565b6e5340ed6a44ea5ec349
         </group>
     </open-files>
 </project-private>
