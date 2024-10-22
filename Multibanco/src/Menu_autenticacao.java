@@ -9,13 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 public class Menu_autenticacao extends javax.swing.JFrame {
 
-<<<<<<< HEAD
-    String conta;
-
-    
-=======
      public static int cont ,sen;
->>>>>>> 3542e1571628d3badaa6d3b45328f0360f7cc257
+
    
 
     public Menu_autenticacao() {
