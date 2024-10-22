@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -28,7 +31,7 @@ public class Saque extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        ctxsaque = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,11 +53,11 @@ public class Saque extends javax.swing.JFrame {
         jLabel2.setText("Digite o quantidade de dinheiro que deseja alevantar");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jTextField1.setText("20");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        ctxsaque.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ctxsaque.setText("20");
+        ctxsaque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                ctxsaqueActionPerformed(evt);
             }
         });
 
@@ -75,7 +78,7 @@ public class Saque extends javax.swing.JFrame {
                         .addContainerGap(35, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ctxsaque, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -93,7 +96,7 @@ public class Saque extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ctxsaque, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
@@ -109,15 +112,27 @@ public class Saque extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    LoginVerificador login = new LoginVerificador();
+    Menu_autenticacao ma = new Menu_autenticacao();
+    if (verificaSaque()) {
+        double saque = Double.parseDouble(ctxsaque.getText());
+        double saldoAtualizado = login.sacarSaldo(ma.cont, saque);
+        
+        JOptionPane.showMessageDialog(this, "Saque realizado com sucesso! Novo saldo: " + saldoAtualizado,
+                "Saque", JOptionPane.INFORMATION_MESSAGE);
+
+    } else {
+        JOptionPane.showMessageDialog(this, "O saque mínimo é 10 euros e máximo 1000 euros.",
+                "Erro no campo Saque", JOptionPane.ERROR_MESSAGE);
+    }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void ctxsaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxsaqueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_ctxsaqueActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        MenuAposLogin md = new MenuAposLogin();
+       MenuAposLogin md = new MenuAposLogin();
        this.dispose();
        md.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -158,10 +173,19 @@ public class Saque extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ctxsaque;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    private boolean verificaSaque() {
+         String saque_Str = ctxsaque.getText(); 
+    try {
+        double saque = Double.parseDouble(saque_Str);      //converte string em ponto flutuante Double
+        return saque >= 10 && saque <= 1000;
+    } catch (NumberFormatException e) {
+        return false; 
+    }
+    }
 }

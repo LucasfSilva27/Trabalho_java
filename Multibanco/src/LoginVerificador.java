@@ -99,5 +99,64 @@ public static double alterarSaldo(int numeroConta, double deposito) {
 
     return saldoAtualizado; // Retorna o saldo atualizado
 }
+public static double sacarSaldo(int numeroConta, double valorSaque) {
+    String sqlSelect = "SELECT saldo FROM registro WHERE conta = ?";
+    String sqlUpdate = "UPDATE registro SET saldo = ? WHERE conta = ?";
+    double saldoAtualizado = 0;
 
+    try (Connection liga = LigaBD.liga()) {
+        if (liga == null) {
+            System.out.println("Erro: Conexão com o banco de dados falhou.");
+            return saldoAtualizado; // Retorna 0 se a conexão falhar
+        }
+
+        // Validar o valor do saque
+        if (valorSaque <= 0) {
+            System.out.println("O valor do saque deve ser maior que zero.");
+            return saldoAtualizado; // Retorna 0 se o valor do saque não for válido
+        }
+
+        // Primeiro, buscar o saldo atual da conta
+        double saldoAtual = 0;
+        try (PreparedStatement stmtSelect = liga.prepareStatement(sqlSelect)) {
+            stmtSelect.setInt(1, numeroConta);
+            ResultSet rs = stmtSelect.executeQuery();
+
+            if (rs.next()) {
+                saldoAtual = rs.getDouble("saldo");
+                System.out.println("Saldo atual: " + saldoAtual);
+            } else {
+                System.out.println("Conta não encontrada.");
+                return saldoAtualizado; // Retorna 0 se a conta não for encontrada
+            }
+        }
+
+        // Verificar se há saldo suficiente para o saque
+        if (saldoAtual < valorSaque) {
+            System.out.println("Saldo insuficiente para realizar o saque.");
+            return saldoAtualizado; // Retorna 0 se não houver saldo suficiente
+        }
+
+        // Subtrair o valor do saque do saldo atual
+        saldoAtualizado = saldoAtual - valorSaque;
+
+        // Atualizar o saldo no banco de dados
+        try (PreparedStatement stmtUpdate = liga.prepareStatement(sqlUpdate)) {
+            stmtUpdate.setDouble(1, saldoAtualizado);
+            stmtUpdate.setInt(2, numeroConta);
+            int rowsAffected = stmtUpdate.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Saque realizado com sucesso!");
+            } else {
+                System.out.println("Falha ao atualizar o saldo.");
+            }
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Erro ao realizar o saque: " + e.getMessage());
+    }
+
+    return saldoAtualizado; // Retorna o saldo atualizado após o saque
+}
 }
