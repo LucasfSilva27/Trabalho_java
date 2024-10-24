@@ -115,9 +115,13 @@ public class Saldo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MenuAposLogin md = new MenuAposLogin();
-       this.dispose();
-       md.setVisible(true); 
+       try {
+           MenuAposLogin md = new MenuAposLogin();
+           this.dispose(); 
+           md.setVisible(true);
+       } catch (SQLException ex) {
+           Logger.getLogger(Saldo.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ctxsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxsaldoActionPerformed

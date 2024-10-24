@@ -1,3 +1,8 @@
+
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -98,9 +103,13 @@ public class Extrato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ctxvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxvoltarActionPerformed
-         MenuAposLogin md = new MenuAposLogin();
-       this.dispose();
-       md.setVisible(true);
+        try {
+            MenuAposLogin md = new MenuAposLogin();
+            this.dispose();
+            md.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Extrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ctxvoltarActionPerformed
 
     /**

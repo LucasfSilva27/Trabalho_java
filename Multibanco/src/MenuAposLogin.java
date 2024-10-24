@@ -1,4 +1,7 @@
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,11 +17,33 @@ import java.util.logging.Logger;
  */
 public class MenuAposLogin extends javax.swing.JFrame {
 
+    Menu_autenticacao ma = new Menu_autenticacao();
     /**
      * Creates new form MenuAposLogin
      */
-    public MenuAposLogin() {
+    public MenuAposLogin() throws SQLException {
         initComponents();
+        
+        Connection con = LigaBD.liga();
+        String query = "SELECT nome FROM registro WHERE conta="+ma.cont;
+        //ResultSet rs = liga.executa(query);
+         try (PreparedStatement stmtSelect = con.prepareStatement(query)) {
+            ResultSet rs = stmtSelect.executeQuery();
+        
+            rs.first();
+            ctxcliente1.setText(rs.getString(1));
+        
+         }    
+         //query = "SELECT conta FROM registro WHERE conta="+ma.cont;
+        //ResultSet rs = liga.executa(query);
+         //try (PreparedStatement stmtSelect = con.prepareStatement(query)) {
+            //ResultSet rs = stmtSelect.executeQuery();
+        
+            //rs.first();
+           ctxconta1.setText(String.valueOf(ma.cont));
+        
+         //}    
+        
     }
 
     /**
@@ -32,7 +57,7 @@ public class MenuAposLogin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        cxtcliente1 = new javax.swing.JTextField();
+        ctxcliente1 = new javax.swing.JTextField();
         ctxconta1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -49,10 +74,10 @@ public class MenuAposLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Opções");
 
-        cxtcliente1.setEditable(false);
-        cxtcliente1.addActionListener(new java.awt.event.ActionListener() {
+        ctxcliente1.setEditable(false);
+        ctxcliente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cxtcliente1ActionPerformed(evt);
+                ctxcliente1ActionPerformed(evt);
             }
         });
 
@@ -132,7 +157,7 @@ public class MenuAposLogin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(118, Short.MAX_VALUE)
+                .addContainerGap(131, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -155,7 +180,7 @@ public class MenuAposLogin extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cxtcliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ctxcliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,7 +193,7 @@ public class MenuAposLogin extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(cxtcliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ctxcliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ctxconta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(96, 96, 96)
@@ -247,9 +272,9 @@ public class MenuAposLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ctxconta1ActionPerformed
 
-    private void cxtcliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cxtcliente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cxtcliente1ActionPerformed
+    private void ctxcliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxcliente1ActionPerformed
+             // TODO add your handling code here:
+    }//GEN-LAST:event_ctxcliente1ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
          Saque md = new Saque();
@@ -287,14 +312,18 @@ public class MenuAposLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuAposLogin().setVisible(true);
+                try {
+                    new MenuAposLogin().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuAposLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ctxcliente1;
     private javax.swing.JTextField ctxconta1;
-    private javax.swing.JTextField cxtcliente1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;

@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -159,9 +160,14 @@ public class Deposito extends javax.swing.JFrame {
     }//GEN-LAST:event_ctxdepositoActionPerformed
 
     private void ctxvoltar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxvoltar2ActionPerformed
-       MenuAposLogin md = new MenuAposLogin();
-       this.dispose();
-       md.setVisible(true);
+       MenuAposLogin md = null;
+        try {
+            md = new MenuAposLogin();
+        } catch (SQLException ex) {
+            Logger.getLogger(Deposito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+        md.setVisible(true);
     }//GEN-LAST:event_ctxvoltar2ActionPerformed
 
 

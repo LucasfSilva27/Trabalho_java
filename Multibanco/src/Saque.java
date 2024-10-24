@@ -1,4 +1,7 @@
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -132,9 +135,13 @@ public class Saque extends javax.swing.JFrame {
     }//GEN-LAST:event_ctxsaqueActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       MenuAposLogin md = new MenuAposLogin();
-       this.dispose();
-       md.setVisible(true);
+        try {
+            MenuAposLogin md = new MenuAposLogin();
+            this.dispose();
+            md.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Saque.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
