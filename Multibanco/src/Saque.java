@@ -1,9 +1,14 @@
 
+
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -119,10 +124,60 @@ public class Saque extends javax.swing.JFrame {
     Menu_autenticacao ma = new Menu_autenticacao();
     if (verificaSaque()) {
         double saque = Double.parseDouble(ctxsaque.getText());
+        try {
+            Connection con = LigaBD.liga();
+        } catch (SQLException ex) {
+            Logger.getLogger(Saque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String nome = null;
+        String query = "SELECT nome FROM registro WHERE conta = ?";
+
+        try (Connection conn = LigaBD.liga();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            // Definindo o parâmetro de consulta
+            pstmt.setInt(1, ma.cont);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    // Obter o valor da coluna "nome" como String
+                    nome = rs.getString("nome");
+                }
+            }
+
+        } catch (SQLException e) {
+        }
+
+    
+        double saldo = 0.0;
+        String sql = "SELECT saldo FROM registro WHERE conta = ?";
+
+        try (Connection con = LigaBD.liga();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            
+            // Definindo o parâmetro de consulta
+            pstmt.setInt(1, ma.cont);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    // Obtenha o valor da coluna "saldo" como double
+                    saldo = rs.getDouble("saldo");
+                }
+            }
+
+        } catch (SQLException e) {
+        }
+
+        
+        String descricao = "Saque";
+        LigaBD.registarAtividade(nome, descricao, saque, saldo,ma.cont);
+        
         double saldoAtualizado = login.sacarSaldo(ma.cont, saque);
         
         JOptionPane.showMessageDialog(this, "Saque realizado com sucesso! Novo saldo: " + saldoAtualizado,
                 "Saque", JOptionPane.INFORMATION_MESSAGE);
+        
+        
 
     } else {
         JOptionPane.showMessageDialog(this, "O saque mínimo é 10 euros e máximo 1000 euros.",

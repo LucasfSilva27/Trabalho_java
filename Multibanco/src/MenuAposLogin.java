@@ -253,7 +253,12 @@ public class MenuAposLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Extrato md = new Extrato();
+       Extrato md = null;
+        try {
+            md = new Extrato();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuAposLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
        this.dispose();
        md.setVisible(true); 
     }//GEN-LAST:event_jButton7ActionPerformed
