@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author lcosta
  */
 public class LoginVerificador {
-      // Método para verificar se a conta existe no banco de dados
+     static double saldo;
     public static boolean verificarLogin(int numeroConta, int senha) {
         String sql = "SELECT * FROM registro WHERE conta = ? AND senha = ?";
         boolean loginValido = false;
@@ -40,6 +40,11 @@ public class LoginVerificador {
             } else {
                 System.out.println("Número da conta ou senha inválidos.");
             }
+            
+            rs.first();
+            saldo = rs.getDouble(4);
+            
+            
 
         } catch (SQLException e) {
             System.out.println("Erro ao verificar login: " + e.getMessage());

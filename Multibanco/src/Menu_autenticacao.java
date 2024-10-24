@@ -13,6 +13,9 @@ import java.util.logging.Logger;
 public class Menu_autenticacao extends javax.swing.JFrame {
 
      public static int cont ,sen;
+     public  static String conta;
+     
+    
 
    
 
