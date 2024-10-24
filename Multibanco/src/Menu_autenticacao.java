@@ -6,7 +6,10 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class Menu_autenticacao extends javax.swing.JFrame {
 
      public static int cont ,sen;
@@ -227,9 +230,13 @@ public class Menu_autenticacao extends javax.swing.JFrame {
 
                 if (loginValido) {
                     
-                    MenuAposLogin md = new MenuAposLogin();
-                    this.dispose();
-                    md.setVisible(true);
+               try {
+                   MenuAposLogin md = new MenuAposLogin();
+                   this.dispose();
+                   md.setVisible(true);
+               } catch (SQLException ex) {
+                   Logger.getLogger(Menu_autenticacao.class.getName()).log(Level.SEVERE, null, ex);
+               }
                 } else {
                     JOptionPane.showMessageDialog(null, "Número da conta ou senha incorretos!");
                 }
