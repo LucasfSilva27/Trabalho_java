@@ -180,7 +180,7 @@ public static double sacarSaldo(int numeroConta, double valorSaque) {
             int rowsAffected = stmtUpdate.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.o-ut.println("Saque realizado com sucesso!");
+                System.out.println("Saque realizado com sucesso!");
             } else {
                 System.out.println("Falha ao atualizar o saldo.");
             }
